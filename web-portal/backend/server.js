@@ -24,12 +24,11 @@ async function getAccessToken() {
 }
 
 // Endpoint to get timesheet, filtering by email
-app.get('/timeSheet', async (req, res) => {
+app.get('/timesheet', async (req, res) => {
     try {
         const accessToken = await getAccessToken(); // Use the new function
-
         const timesheetServiceUrl = process.env.TIMESHEET_SERVICE_URL;
-        const response = await axios.get(`${timesheetServiceUrl}/timesheet/entries`, {
+        const response = await axios.get(`${timesheetServiceUrl}/entries`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
             },
