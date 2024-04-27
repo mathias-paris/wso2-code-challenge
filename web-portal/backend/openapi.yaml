@@ -1,61 +1,24 @@
 openapi: 3.0.0
 info:
   title: CareConnect Backend API
-  description: Backend service for the CareConnect frontend.
+  description: Backend service for the Timesheet frontend.
   version: "1.0"
 servers:
   - url: http://localhost:8080
     description: Development server
 paths:
-  /create-appointment:
-    post:
-      summary: Create an appointment
-      description: Forwards the appointment creation request to the Appointment service with proper authentication.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AppointmentRequest'
-      responses:
-        '200':
-          description: Appointment created successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AppointmentResponse'
-        '401':
-          description: Authentication failed
-        '500':
-          description: Internal server error
-  /appointments:
+  /timeSheet:
     get:
-      summary: Get appointments by email
-      description: Fetches appointments for the given email. Supports filtering by the 'upcoming' query parameter.
-      parameters:
-        - in: query
-          name: email
-          schema:
-            type: string
-            format: email
-          required: true
-          description: Email address to filter appointments
-        - in: query
-          name: upcoming
-          schema:
-            type: string
-            enum: ['true', 'false']
-          required: false
-          description: Optional filter for fetching only upcoming appointments
+      summary: Get timesheet
       responses:
         '200':
-          description: A list of appointments
+          description: A timesheet
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AppointmentResponse'
+                  $ref: '#/components/schemas/WorklogItem'
         '400':
           description: Missing or invalid parameters
         '401':
@@ -64,63 +27,22 @@ paths:
           description: Internal server error
 components:
   schemas:
-    AppointmentRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          example: John Doe
-        service:
-          type: string
-          example: Dental Checkup
-        phoneNumber:
-          type: string
-          example: '+1234567890'
-        appointmentDate:
-          type: string
-          format: date-time
-          example: '2023-04-30T14:00:00Z'
-        email:
-          type: string
-          format: email
-          example: john.doe@example.com
-      required:
-        - name
-        - service
-        - phoneNumber
-        - appointmentDate
-        - email
-    AppointmentResponse:
+    WorklogItem:
       type: object
       properties:
         id:
           type: integer
           example: 1
-        name:
+        date:
           type: string
-          example: John Doe
-        service:
+          format: date
+          example: "2024-04-01"
+        project:
           type: string
-          example: Dental Checkup
-        phoneNumber:
+          example: "Project A"
+        worklog:
           type: string
-          example: '+1234567890'
-        appointmentDate:
+          example: "Worklog for Project A"
+        duration:
           type: string
-          format: date-time
-          example: '2023-04-30T14:00:00Z'
-        email:
-          type: string
-          format: email
-          example: john.doe@example.com
-        status:
-          type: string
-          example: Confirmed
-      required:
-        - id
-        - name
-        - service
-        - phoneNumber
-        - appointmentDate
-        - email
-        - status
+          example: "3 hours"

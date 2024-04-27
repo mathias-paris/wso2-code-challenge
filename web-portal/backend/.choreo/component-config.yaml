@@ -4,7 +4,7 @@ spec:
   # +optional Incoming connection details for the component (AKA endpoints).
   inbound:
     # +required Unique name for the endpoint. (This name will be used when generating the managed API)
-    - name: appointments
+    - name: timesheet
       # +required Numeric port value that gets exposed via the endpoint
       port: 8080
       # +required Type of traffic that the endpoint is accepting. For example: REST, GraphQL, etc.
@@ -26,10 +26,10 @@ spec:
       connectionConfig: 01ef047c-372e-11f6-bad3-46d3bc203747
       env:
       - from: ServiceURL
-        to: APPOINTMENT_SERVICE_URL
+        to: TIMESHEET_SERVICE_URL
       - from: ConsumerKey
-        to: APPOINTMENTS_OAUTH_CLIENT_ID
+        to: TIMESHEET_OAUTH_CLIENT_ID
       - from: ConsumerSecret
-        to: APPOINTMENTS_OAUTH_CLIENT_SECRET
+        to: TIMESHEET_OAUTH_CLIENT_SECRET
       - from: TokenURL
-        to: APPOINTMENTS_OAUTH_TOKEN_URL
+        to: TIMESHEET_OAUTH_TOKEN_URL
