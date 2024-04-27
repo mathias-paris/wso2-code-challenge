@@ -24,7 +24,7 @@ async function getAccessToken() {
 }
 
 // Endpoint to get timesheet, filtering by email
-app.get('/timesheet', async (req, res) => {
+app.get('/timesheet/entries', async (req, res) => {
     try {
         const accessToken = await getAccessToken(); // Use the new function
         const timesheetServiceUrl = process.env.TIMESHEET_SERVICE_URL;
