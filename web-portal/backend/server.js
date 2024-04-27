@@ -29,7 +29,7 @@ app.get('/timeSheet', async (req, res) => {
         const accessToken = await getAccessToken(); // Use the new function
 
         const timesheetServiceUrl = process.env.TIMESHEET_SERVICE_URL;
-        const response = await axios.get(`${timesheetServiceUrl}/timeSheet`, {
+        const response = await axios.get(`${timesheetServiceUrl}/timesheet/entries`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
             },

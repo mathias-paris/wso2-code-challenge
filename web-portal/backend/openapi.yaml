@@ -7,7 +7,7 @@ servers:
   - url: http://localhost:8080
     description: Development server
 paths:
-  /timeSheet:
+  /timesheet/entries:
     get:
       summary: Get timesheet
       responses:
