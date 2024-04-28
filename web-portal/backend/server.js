@@ -24,7 +24,7 @@ async function getAccessToken() {
 }
 
 // Endpoint to get timesheet
-app.get('/timesheet/entries', async (req, res) => {
+app.get('/entries', async (req, res) => {
     try {
         const accessToken = await getAccessToken(); // Use the new function
         const timesheetServiceUrl = process.env.TIMESHEET_SERVICE_URL;
@@ -42,7 +42,7 @@ app.get('/timesheet/entries', async (req, res) => {
 });
 
 // Endpoint to post timesheet entry
-app.post('/timesheet/entry', async (req, res) => {
+app.post('/entry', async (req, res) => {
     try {
         const accessToken = await getAccessToken(); // Use the new function
         const timesheetServiceUrl = process.env.TIMESHEET_SERVICE_URL;
