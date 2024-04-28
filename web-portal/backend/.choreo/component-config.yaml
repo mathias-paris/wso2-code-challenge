@@ -22,8 +22,8 @@ spec:
       schemaFilePath: openapi.yaml
   outbound:
     serviceReferences:
-    - name: choreo:///mathiasparis/ybxk/piaxfi/61d0b/v1.0/PUBLIC
-      connectionConfig: 01ef047c-372e-11f6-bad3-46d3bc203747
+    - name: choreo:///mathiasparis/ybxk/piaxfi/61d0b/v1.0/ORGANIZATION
+      connectionConfig: 01ef0543-4f1c-1a60-9cb7-eedc58b75355
       env:
       - from: ServiceURL
         to: TIMESHEET_SERVICE_URL
