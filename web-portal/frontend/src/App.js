@@ -9,6 +9,7 @@ import theme from './theme';
 import LoginPage from './LoginPage';
 import ProtectedRoute from './ProtectedRoute'; // Import your ProtectedRoute component
 import GetTimesheetEntries from './components/GetTimesheetEntries';
+import PostTimesheetEntry from './components/PostTimesheetEntry';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -18,7 +19,7 @@ function App() {
     open: false,
     message: '',
   });
-  const [appointmentsRefreshKey, setAppointmentsRefreshKey] = useState(0);
+  const [timesheetRefreshKey, setTimesheetRefreshKey] = useState(0);
 
   useEffect(() => {
     let isUserInfoSet = false;
@@ -50,8 +51,8 @@ function App() {
     setLoading(false); // Set loading to false after authentication check is complete
   }, []);
 
-  const triggerAppointmentsRefresh = () => {
-    setAppointmentsRefreshKey(prevKey => prevKey + 1);
+  const handlePostingSuccess = () => {
+    setTimesheetRefreshKey(prevKey => prevKey + 1);
   };
 
   const handleLogout = () => {
@@ -108,8 +109,9 @@ function App() {
                     <Typography component="h1" variant="h5" style={{ marginBottom: 20 }}>
                       Welcome, {userDetails.name}
                     </Typography>
+                    <PostTimesheetEntry userDetails={userDetails} handleOpenSnackbar={handleOpenSnackbar} onPostingSuccess={handlePostingSuccess} />
                     <Divider style={{ margin: '20px 0' }} />
-                    <GetTimesheetEntries username={userDetails.username}/>
+                    <GetTimesheetEntries username={userDetails.username} triggerRefresh={timesheetRefreshKey}/>
                   </Box>
                 </Container>
               } />

@@ -10,7 +10,7 @@ const getServiceLabel = (serviceValue) => {
     return service ? service.label : serviceValue; // Fallback to the value if not found
 };
 
-const GetTimesheetEntries = ({ username }) => {
+const GetTimesheetEntries = ({ username, triggerRefresh }) => {
     const [timesheetEntries, setTimesheetEntries] = useState([]);
 
     const fetchTimesheetEntries = async () => {
@@ -24,7 +24,7 @@ const GetTimesheetEntries = ({ username }) => {
 
     useEffect(() => {
         fetchTimesheetEntries();
-    }, [username]);
+    }, [username, triggerRefresh]);
 
     if (timesheetEntries.length === 0) {
         return (
