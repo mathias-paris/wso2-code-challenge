@@ -28,7 +28,7 @@ export const postTimesheetEntry = async (entryDetails) => {
       throw new Error(message);
     }
 
-    const result = await response.json();
+    const result = await response.ok;
     return result;
 
   } catch (error) {
