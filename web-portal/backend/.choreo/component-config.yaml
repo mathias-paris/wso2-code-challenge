@@ -23,7 +23,7 @@ spec:
   outbound:
     serviceReferences:
     - name: choreo:///mathiasparis/ybxk/piaxfi/61d0b/v1.0/ORGANIZATION
-      connectionConfig: 01ef0543-4f1c-1a60-9cb7-eedc58b75355
+      connectionConfig: 01ef0547-e08e-1170-9407-e188b04a3f53
       env:
       - from: ServiceURL
         to: TIMESHEET_SERVICE_URL
