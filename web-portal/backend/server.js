@@ -23,7 +23,7 @@ async function getAccessToken() {
     }
 }
 
-// Endpoint to get timesheet, filtering by email
+// Endpoint to get timesheet
 app.get('/timesheet/entries', async (req, res) => {
     try {
         const accessToken = await getAccessToken(); // Use the new function
@@ -37,6 +37,23 @@ app.get('/timesheet/entries', async (req, res) => {
         res.status(response.status).send(response.data);
     } catch (error) {
         console.error('Error fetching timesheet:', error);
+        res.status(error.response ? error.response.status : 500).send(error.message);
+    }
+});
+
+// Endpoint to post timesheet entry
+app.post('/timesheet/entry', async (req, res) => {
+    try {
+        const accessToken = await getAccessToken(); // Use the new function
+        const timesheetServiceUrl = process.env.TIMESHEET_SERVICE_URL;
+        const response = await axios.post(`${timesheetServiceUrl}/entry`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+            },
+        });
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        console.error('Error post timesheet entry:', error);
         res.status(error.response ? error.response.status : 500).send(error.message);
     }
 });

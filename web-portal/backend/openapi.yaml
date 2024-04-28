@@ -18,7 +18,25 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/WorklogItem'
+                  $ref: '#/components/schemas/GetWorklogItem'
+        '400':
+          description: Missing or invalid parameters
+        '401':
+          description: Authentication failed
+        '500':
+          description: Internal server error
+  /timesheet/entry:
+    post:
+      summary: Post timesheet entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostWorklogItem'
+      responses:
+        '201':
+          description: A timesheet
         '400':
           description: Missing or invalid parameters
         '401':
@@ -27,12 +45,15 @@ paths:
           description: Internal server error
 components:
   schemas:
-    WorklogItem:
+    GetWorklogItem:
       type: object
       properties:
         id:
           type: integer
           example: 1
+        user_id:
+          type: string
+          example: "123ABC"
         date:
           type: string
           format: date
@@ -44,5 +65,24 @@ components:
           type: string
           example: "Worklog for Project A"
         duration:
+          type: integer
+          example: 3
+    PostWorklogItem:
+      type: object
+      properties:
+        user_id:
           type: string
-          example: "3 hours"
+          example: "123ABC"
+        date:
+          type: string
+          format: date
+          example: "2024-04-01"
+        project:
+          type: string
+          example: "Project A"
+        worklog:
+          type: string
+          example: "Worklog for Project A"
+        duration:
+          type: integer
+          example: 3
