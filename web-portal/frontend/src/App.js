@@ -7,9 +7,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import Cookies from 'js-cookie';
 import theme from './theme';
 import LoginPage from './LoginPage';
-import BookingForm from './components/BookingForm';
 import ProtectedRoute from './ProtectedRoute'; // Import your ProtectedRoute component
-import UpcomingAppointments from './components/UpcomingAppointments';
+import GetTimesheetEntries from './components/GetTimesheetEntries';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -91,7 +90,7 @@ function App() {
           <AppBar position="static" color="primary">
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                CareConnect - Your Gateway to Health and Wellness
+                Timesheet - Logging hours made simple.
               </Typography>
               {loggedIn && (
                 <IconButton color="inherit" onClick={handleLogout}>
@@ -109,9 +108,8 @@ function App() {
                     <Typography component="h1" variant="h5" style={{ marginBottom: 20 }}>
                       Welcome, {userDetails.name}
                     </Typography>
-                    <BookingForm userDetails={userDetails} handleOpenSnackbar={handleOpenSnackbar} onBookingSuccess={triggerAppointmentsRefresh} />
                     <Divider style={{ margin: '20px 0' }} />
-                    <UpcomingAppointments email={userDetails.email} triggerRefresh={appointmentsRefreshKey} />
+                    <GetTimesheetEntries username={userDetails.username}/>
                   </Box>
                 </Container>
               } />
