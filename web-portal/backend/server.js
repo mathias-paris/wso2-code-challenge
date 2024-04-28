@@ -46,7 +46,7 @@ app.post('/entry', async (req, res) => {
     try {
         const accessToken = await getAccessToken(); // Use the new function
         const timesheetServiceUrl = process.env.TIMESHEET_SERVICE_URL;
-        const response = await axios.post(`${timesheetServiceUrl}/entry`, {
+        const response = await axios.post(`${timesheetServiceUrl}/entry`, req.body, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
             },
