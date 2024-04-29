@@ -29,10 +29,10 @@ const LoginPage = () => {
                     }}
                 >
                     <Typography variant="h4" component="h1" gutterBottom sx={{ textAlign: 'center' }}>
-                        Welcome to CareConnect
+                        Welcome to your Timesheet
                     </Typography>
                     <Typography variant="subtitle1" gutterBottom sx={{ mb: 2, textAlign: 'center' }}>
-                        Your gateway to health and wellness
+                        Your Place to track your hours
                     </Typography>
                     <Button
                         variant="contained"
